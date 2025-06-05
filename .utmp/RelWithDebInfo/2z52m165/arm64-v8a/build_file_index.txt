@@ -1,0 +1,2 @@
+D:\XR_Game_BugSlapper\BugSlapper\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\cpp\CMakeLists.txt
+D:\XR_Game_BugSlapper\BugSlapper\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\cpp\GameActivity\CMakeLists.txt
