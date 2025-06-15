@@ -179,10 +179,10 @@ MonoBehaviour:
   smashForce: 2
   destroyOnSmash: 0
   releaseOnSmash: 0
-  effect: {fileID: 0}
+  effect: {fileID: 5875405173272680719, guid: 7892240fff4091040bb6847cec808885, type: 3}
   createNewEffect: 1
   applyVelocityOnSmash: 1
-  smashSound: {fileID: 0}
+  smashSound: {fileID: 8300000, guid: 6568f0cac6ccace4dbbed13923b28850, type: 3}
   smashVolume: 1
   OnSmash:
     m_PersistentCalls:

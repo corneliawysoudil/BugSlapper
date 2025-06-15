@@ -179,10 +179,10 @@ MonoBehaviour:
   smashForce: 1
   destroyOnSmash: 1
   releaseOnSmash: 0
-  effect: {fileID: 0}
+  effect: {fileID: 7452553202921276292, guid: 84d71e12a413ef547a148cc2cfa5eb86, type: 3}
   createNewEffect: 1
   applyVelocityOnSmash: 1
-  smashSound: {fileID: 0}
+  smashSound: {fileID: 8300000, guid: 6568f0cac6ccace4dbbed13923b28850, type: 3}
   smashVolume: 1
   OnSmash:
     m_PersistentCalls:
@@ -200,10 +200,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  flySpeed: 2
+  flySpeed: 1
   circleRadius: 3
   circleSpeed: 2
   attackDistance: 1.5
-  attackSpeed: 2
+  attackSpeed: 1
   circleDuration: 2
   minCircleFraction: 0.3
