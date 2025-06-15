@@ -11,6 +11,9 @@ public class WaveSpawner : MonoBehaviour
         public float spawnRate; // Bugs pro Sekunde
     }
 
+    public GameObject headObject;
+    Vector3 spawnCenter;
+
     public Transform[] spawnPoints; // 8 Spawnpunkte im Inspector zuweisen
     public List<GameObject> bugPrefabs; // Liste von Bug-Prefabs
     public List<Wave> waves = new List<Wave>();
@@ -21,6 +24,12 @@ public class WaveSpawner : MonoBehaviour
     void Start()
     {
         StartCoroutine(SpawnWave());
+    }
+
+    void Update()
+    {
+        spawnCenter = headObject.transform.position;
+        transform.position = new Vector3(spawnCenter.x, 0, spawnCenter.z);
     }
 
     IEnumerator SpawnWave()

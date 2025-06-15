@@ -12,7 +12,7 @@ EditorBuildSettings:
     path: Assets/AutoHand/Examples/Scenes/MetaXR/Passthrough.unity
     guid: 5ad19f7c8680f8e4da379a6c7762675a
   - enabled: 1
-    path: Assets/Scenes/TestScene.unity
+    path: Assets/Scenes/PlayScene.unity
     guid: 1f77203aa9acda446bf38c357ff35f64
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
