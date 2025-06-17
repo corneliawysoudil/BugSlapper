@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class ScoreUI : MonoBehaviour
 {
     public BugSpawner spawner;
-    public TextMeshProUGUI scoreText; // TextMesh Pro Komponente
+    public TextMeshPro scoreText; // TextMesh Pro Komponente
 
     void Update()
     {

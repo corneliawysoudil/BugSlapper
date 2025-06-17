@@ -12,6 +12,9 @@ public class BugSpawner : MonoBehaviour
     private float timeSinceLastSpawn;
     private float timeSurvived;
 
+    public GameObject headObject;
+    Vector3 spawnCenter;
+
     public int bugsKilled { get; private set; } // Zähler für getötete Bugs
 
     void Start()
@@ -24,6 +27,10 @@ public class BugSpawner : MonoBehaviour
 
     void Update()
     {
+
+        spawnCenter = headObject.transform.position;
+        transform.position = new Vector3(spawnCenter.x, 0, spawnCenter.z);
+
         timeSurvived += Time.deltaTime;
         timeSinceLastSpawn += Time.deltaTime;
 

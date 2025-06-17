@@ -17,6 +17,8 @@ namespace Autohand.Demo{
         [Header("Particle Effect")]
         [Tooltip("Plays this effect on smash")]
         public ParticleSystem effect;
+        [Tooltip("Scale of the particle effect on smash")]
+        public float particleScale = 0.1f;
         [Tooltip("Whether or not to instantiates a new a particle system on smash")]
         public bool createNewEffect = true;
         [Tooltip("Whether or not to apply rigidbody velocity to particle velocity on smash")]
@@ -66,6 +68,7 @@ namespace Autohand.Demo{
                     particles = effect;
 
                 particles.transform.parent = null;
+                particles.transform.localScale = Vector3.one * particleScale;
                 particles.Play();
 
                 Rigidbody rb;

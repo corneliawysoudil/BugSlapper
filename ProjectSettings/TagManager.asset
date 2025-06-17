@@ -28,11 +28,12 @@ TagManager:
   - QDSUITextSecondaryInvertedColor
   - QDSUIToggleCheckboxRadio
   - QDSUITextInputField
+  - Bug
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Overlay UI
   - Water
   - UI
   - Grabbing
@@ -60,7 +61,7 @@ TagManager:
   - 
   - 
   - 
-  - 
+  - OVROverlayCanvas Rendering
   m_SortingLayers:
   - name: Default
     uniqueID: 0
