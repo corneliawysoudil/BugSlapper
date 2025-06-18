@@ -2,18 +2,18 @@ using UnityEngine;
 
 public class BugSpawner : MonoBehaviour
 {
-    public Transform[] spawnPoints;      // Array mit möglichen Spawnpunkten
     public GameObject[] bugPrefabs;      // Array mit möglichen Bug-Prefabs
     public float startSpawnInterval = 3f; // Start-Intervall in Sekunden
     public float minSpawnInterval = 0.5f; // Minimaler Abstand zwischen Spawns
     public float difficultyIncreaseRate = 0.05f; // Wie schnell das Intervall sinkt
+    public float spawnDistance = 5f; // Abstand zum Spieler, an dem Bugs spawnen
 
     private float currentSpawnInterval;
     private float timeSinceLastSpawn;
     private float timeSurvived;
 
     public GameObject headObject;
-    Vector3 spawnCenter;
+    Vector3 spawnPosition;
 
     public int bugsKilled { get; private set; } // Zähler für getötete Bugs
 
@@ -27,10 +27,6 @@ public class BugSpawner : MonoBehaviour
 
     void Update()
     {
-
-        spawnCenter = headObject.transform.position;
-        transform.position = new Vector3(spawnCenter.x, 0, spawnCenter.z);
-
         timeSurvived += Time.deltaTime;
         timeSinceLastSpawn += Time.deltaTime;
 
@@ -49,15 +45,19 @@ public class BugSpawner : MonoBehaviour
 
     void SpawnRandomBug()
     {
-        if (spawnPoints.Length == 0 || bugPrefabs.Length == 0)
+        if (bugPrefabs.Length == 0)
             return;
 
-        int spawnIndex = Random.Range(0, spawnPoints.Length);
+        // Berechne die Spawn-Position in einem zufälligen Richtung um den Spieler
+        Vector3 randomDirection = Random.insideUnitSphere.normalized;
+        spawnPosition = headObject.transform.position + randomDirection * spawnDistance;
+        spawnPosition.y = 0; // Setze die Y-Position auf 0, falls nötig
+
         int bugIndex = Random.Range(0, bugPrefabs.Length);
 
         GameObject bug = Instantiate(
             bugPrefabs[bugIndex],
-            spawnPoints[spawnIndex].position,
+            spawnPosition,
             Quaternion.identity
         );
 

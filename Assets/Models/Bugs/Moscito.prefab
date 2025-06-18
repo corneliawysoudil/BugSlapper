@@ -10,15 +10,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 2c9c34e89926f1e49921badb07838f96, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.01
+      value: 0.02
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2c9c34e89926f1e49921badb07838f96, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.01
+      value: 0.02
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2c9c34e89926f1e49921badb07838f96, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.01
+      value: 0.02
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2c9c34e89926f1e49921badb07838f96, type: 3}
       propertyPath: m_LocalPosition.x
@@ -326,12 +326,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  flySpeed: 3
+  flySpeed: 1
   circleRadius: 3
   circleSpeed: 2
   attackDistance: 1.5
-  attackSpeed: 3
-  circleDuration: 2
+  attackSpeed: 1
+  circleDuration: 5
   minCircleFraction: 0.3
 --- !u!82 &3908112820391016766
 AudioSource:
@@ -346,7 +346,7 @@ AudioSource:
   m_audioClip: {fileID: 8300000, guid: 3a07efa73cf6f2642980cd2edfb14b8c, type: 3}
   m_Resource: {fileID: 8300000, guid: 3a07efa73cf6f2642980cd2edfb14b8c, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.8
+  m_Volume: 0.6
   m_Pitch: 1
   Loop: 1
   Mute: 0

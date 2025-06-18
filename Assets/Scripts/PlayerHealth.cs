@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
@@ -43,7 +44,7 @@ public class PlayerHealth : MonoBehaviour
         if (currentLives <= 0)
         {
             Debug.Log("Game Over!");
-            //SceneManager.LoadScene("EndScene"); // Lade die Neustart-Szene
+            SceneManager.LoadScene("EndScene"); // Lade die Neustart-Szene
         }
     }
 

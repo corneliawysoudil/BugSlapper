@@ -15,8 +15,14 @@ EditorBuildSettings:
     path: Assets/Scenes/PlayScene.unity
     guid: 1f77203aa9acda446bf38c357ff35f64
   - enabled: 1
+    path: Assets/Scenes/StartScene.unity
+    guid: 9d1dc69fd8f217b4da78d130f0f1f871
+  - enabled: 1
     path: Assets/Scenes/PlayPassthrough.unity
     guid: 0c3390df4dc0a714fa9d85f9e759a3c6
+  - enabled: 1
+    path: Assets/Scenes/EndScene.unity
+    guid: ad488923ad7a66c439a2e10532fa6a63
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: ab7ce4537e62b6d449d42fd57b7d71b3, type: 2}
