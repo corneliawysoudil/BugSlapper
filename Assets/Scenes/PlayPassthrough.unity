@@ -312,6 +312,10 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1632690553892074456, guid: c356c1b83a4332f40a8468a56da6b936, type: 3}
+      propertyPath: _enableDynamicResolution
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1632690553892074456, guid: c356c1b83a4332f40a8468a56da6b936, type: 3}
       propertyPath: isInsightPassthroughEnabled
       value: 1
       objectReference: {fileID: 0}
@@ -398,6 +402,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1632690553884968506, guid: c356c1b83a4332f40a8468a56da6b936, type: 3}
       insertIndex: -1
       addedObject: {fileID: 175501555}
+    - targetCorrespondingSourceObject: {fileID: 1632690553884968506, guid: c356c1b83a4332f40a8468a56da6b936, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 175501561}
     - targetCorrespondingSourceObject: {fileID: 1632690553884968504, guid: c356c1b83a4332f40a8468a56da6b936, type: 3}
       insertIndex: -1
       addedObject: {fileID: 175501552}
@@ -644,6 +651,8 @@ MonoBehaviour:
   - {fileID: 2088312491}
   fullHeartSprite: {fileID: 388768998, guid: 6c9a633936be66d47b576ce4489ded20, type: 3}
   emptyHeartSprite: {fileID: -1410693463, guid: 0fb873c4c968c7b46a84e97117d57d5e, type: 3}
+  hitSound: {fileID: 0}
+  audioSource: {fileID: 0}
 --- !u!135 &175501556
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -665,6 +674,103 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.25
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!82 &175501561
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 175501551}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &348205831
 GameObject:
   m_ObjectHideFlags: 0
@@ -704,6 +810,7 @@ MonoBehaviour:
   difficultyIncreaseRate: 0.05
   spawnDistance: 5
   headObject: {fileID: 175501551}
+  bugsKilled: 0
 --- !u!4 &348205835
 Transform:
   m_ObjectHideFlags: 0
@@ -871,7 +978,6 @@ GameObject:
   - component: {fileID: 649952086}
   - component: {fileID: 649952089}
   - component: {fileID: 649952088}
-  - component: {fileID: 649952087}
   m_Layer: 5
   m_Name: Heart 1
   m_TagString: Untagged
@@ -898,19 +1004,6 @@ RectTransform:
   m_AnchoredPosition: {x: -571.8, y: 0}
   m_SizeDelta: {x: 94, y: 83}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &649952087
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 649952085}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f8536c35c369f2f4cadf9c7299e8e16c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  URL: https://discord.gg/FrMhgEfGgE
 --- !u!114 &649952088
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -990,6 +1083,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1115698963}
   - component: {fileID: 1115698964}
+  - component: {fileID: 1115698965}
   m_Layer: 0
   m_Name: GameUI
   m_TagString: Untagged
@@ -1026,9 +1120,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce4027f654f978a4b9e2f9945d3221df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GameScore: 0
-  spawner: {fileID: 348205833}
   scoreText: {fileID: 1375616637}
+--- !u!114 &1115698965
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1115698962}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e9ddca005432674c85e7396e95d5882, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 175501548}
 --- !u!1 &1192896795
 GameObject:
   m_ObjectHideFlags: 0
@@ -1472,7 +1577,6 @@ GameObject:
   - component: {fileID: 1782428366}
   - component: {fileID: 1782428369}
   - component: {fileID: 1782428368}
-  - component: {fileID: 1782428367}
   m_Layer: 5
   m_Name: Heart 2
   m_TagString: Untagged
@@ -1499,19 +1603,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 94, y: 83}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1782428367
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1782428365}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f8536c35c369f2f4cadf9c7299e8e16c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  URL: https://discord.gg/FrMhgEfGgE
 --- !u!114 &1782428368
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1592,7 +1683,6 @@ GameObject:
   - component: {fileID: 2088312489}
   - component: {fileID: 2088312492}
   - component: {fileID: 2088312491}
-  - component: {fileID: 2088312490}
   m_Layer: 5
   m_Name: Heart 3
   m_TagString: Untagged
@@ -1619,19 +1709,6 @@ RectTransform:
   m_AnchoredPosition: {x: 578.4, y: 0}
   m_SizeDelta: {x: 94, y: 83}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &2088312490
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2088312488}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f8536c35c369f2f4cadf9c7299e8e16c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  URL: https://discord.gg/FrMhgEfGgE
 --- !u!114 &2088312491
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1748,7 +1825,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4691073898077868146, guid: f5db3efa59d391b40b9a384414c8b783, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.02
+      value: -0.005
       objectReference: {fileID: 0}
     - target: {fileID: 4691073898077868146, guid: f5db3efa59d391b40b9a384414c8b783, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1789,6 +1866,10 @@ PrefabInstance:
     - target: {fileID: 9016181117390360963, guid: f5db3efa59d391b40b9a384414c8b783, type: 3}
       propertyPath: m_Name
       value: FlySwatter
+      objectReference: {fileID: 0}
+    - target: {fileID: 9016181117390360963, guid: f5db3efa59d391b40b9a384414c8b783, type: 3}
+      propertyPath: m_TagString
+      value: Swatter
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

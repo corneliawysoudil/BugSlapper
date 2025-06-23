@@ -11,6 +11,10 @@ public class PlayerHealth : MonoBehaviour
     public Sprite fullHeartSprite; // Sprite für ein volles Herz
     public Sprite emptyHeartSprite; // Sprite für ein leeres Herz
 
+    public AudioClip hitSound; // AudioClip für den Treffer-Sound
+    public AudioSource audioSource; // AudioSource zum Abspielen des Sounds
+
+
     void Start()
     {
         // Initialisiere die Lebenspunkte
@@ -20,15 +24,30 @@ public class PlayerHealth : MonoBehaviour
         UpdateHeartUI();
     }
 
+    private void Awake()
+    {
+        currentLives = maxLives; // Setze die Lebenspunkte auf die maximale Anzahl
+        UpdateHeartUI(); // Aktualisiere die Herz-Sprites
+    }
+
     void OnTriggerEnter(Collider other)
     {
         // Überprüfe, ob das kollidierende Objekt den Tag "Bug" hat
+
         if (other.CompareTag("Bug"))
         {
             ReduceLife();
+            PlayHitSound(); // Spiele den Treffer-Sound ab
             Destroy(other.gameObject); // Zerstöre das kollidierende Objekt
+            ScoreKeeper.score--;
         }
     }
+
+    void PlayHitSound()
+    {
+        audioSource.PlayOneShot(hitSound); // Spiele den Treffer-Sound ab
+    }
+    
 
     void ReduceLife()
     {

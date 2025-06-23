@@ -15,7 +15,7 @@ public class BugSpawner : MonoBehaviour
     public GameObject headObject;
     Vector3 spawnPosition;
 
-    public int bugsKilled { get; private set; } // Zähler für getötete Bugs
+    public int bugsKilled; // Zähler für getötete Bugs
 
     void Start()
     {
@@ -70,6 +70,7 @@ public class BugSpawner : MonoBehaviour
     public void OnBugKilled()
     {
         bugsKilled++;
+        ScoreKeeper.score = bugsKilled; // Aktualisiere den Score im ScoreKeeper
         // Debug.Log("Bugs getötet: " + bugsKilled);
     }
     public int GetScore()
@@ -85,7 +86,7 @@ public class BugDeathHandler : MonoBehaviour
     [HideInInspector]
     public BugSpawner spawner;
 
-    void OnDestroy()
+    private void OnDestroy()
     {
         if (spawner != null)
         {

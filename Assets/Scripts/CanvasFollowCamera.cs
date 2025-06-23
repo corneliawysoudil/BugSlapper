@@ -1,13 +1,23 @@
 using UnityEngine;
 
-public class CanvasFollowCamera : MonoBehaviour
+public class CanvasFollowPlayer : MonoBehaviour
 {
-    public Transform cameraTransform;
-    public Vector3 offset = new Vector3(0, -0.2f, 1.0f);
+    public Transform playerCamera; // Die Kamera des Spielers
+    public float distanceFromPlayer = 2.0f; // Abstand der Canvas von der Kamera
 
-    void LateUpdate()
+    void Update()
     {
-        transform.position = cameraTransform.position + cameraTransform.TransformDirection(offset);
-        transform.rotation = Quaternion.LookRotation(transform.position - cameraTransform.position);
+        if (playerCamera == null)
+        {
+            Debug.LogWarning("Player Camera ist nicht zugewiesen!");
+            return;
+        }
+
+        // Positioniere die Canvas vor der Kamera
+        Vector3 forwardDirection = playerCamera.forward; // Blickrichtung der Kamera
+        transform.position = playerCamera.position + forwardDirection * distanceFromPlayer;
+
+        // Richte die Canvas zur Kamera aus
+        transform.rotation = Quaternion.LookRotation(forwardDirection);
     }
 }
