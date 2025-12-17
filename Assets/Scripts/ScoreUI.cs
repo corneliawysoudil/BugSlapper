@@ -7,6 +7,9 @@ public class ScoreUI : MonoBehaviour
     public TextMeshPro scoreText; // TextMesh Pro Komponente
     void Update()
     {
-        scoreText.text = "Score: " + ScoreKeeper.score;
+        if (scoreText != null)
+        {
+            scoreText.text = "Score: " + ScoreKeeper.score;
+        }
     }
 }

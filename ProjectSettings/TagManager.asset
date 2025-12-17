@@ -30,6 +30,8 @@ TagManager:
   - QDSUITextInputField
   - Bug
   - Swatter
+  - LeftHand
+  - RightHand
   layers:
   - Default
   - TransparentFX

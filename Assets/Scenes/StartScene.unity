@@ -323,6 +323,8 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 3672247982561524749, guid: c356c1b83a4332f40a8468a56da6b936, type: 3}
+    - {fileID: 7819072465218880427, guid: c356c1b83a4332f40a8468a56da6b936, type: 3}
+    - {fileID: 3358160124367239714, guid: c356c1b83a4332f40a8468a56da6b936, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 1632690553885071898, guid: c356c1b83a4332f40a8468a56da6b936, type: 3}
       insertIndex: -1
@@ -473,12 +475,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxLives: 3
+  bugCleanupRadius: 20
+  bugCleanupInterval: 1
   heartImages:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   fullHeartSprite: {fileID: 388768998, guid: 6c9a633936be66d47b576ce4489ded20, type: 3}
   emptyHeartSprite: {fileID: -1410693463, guid: 0fb873c4c968c7b46a84e97117d57d5e, type: 3}
+  hitSound: {fileID: 0}
+  audioSource: {fileID: 0}
 --- !u!135 &82548975
 SphereCollider:
   m_ObjectHideFlags: 0

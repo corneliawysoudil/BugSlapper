@@ -1,0 +1,2 @@
+D:\CMS24_JaS_MasterShowcase\BugSlapper\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\cpp\CMakeLists.txt
+D:\CMS24_JaS_MasterShowcase\BugSlapper\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\cpp\GameActivity\CMakeLists.txt

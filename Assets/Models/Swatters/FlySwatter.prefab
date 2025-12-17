@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 3127313394923399975}
   - component: {fileID: 3879000046678987033}
   - component: {fileID: 5391084449535769061}
+  - component: {fileID: -1825819660646394771}
   m_Layer: 0
   m_Name: FlySwatter
   m_TagString: Untagged
@@ -266,3 +267,18 @@ MonoBehaviour:
   StopSelecting:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &-1825819660646394771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9016181117390360963}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65d74fd3318f38348a7d140dcd675efe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerHand: {fileID: 0}
+  hitPoints: 1
+  thrownBonusPoints: 2
