@@ -5,17 +5,25 @@ public class BugSpawner : MonoBehaviour
     public GameObject[] bugPrefabs;      // Array mit möglichen Bug-Prefabs
     public float startSpawnInterval = 3f; // Start-Intervall in Sekunden
     public float minSpawnInterval = 0.5f; // Minimaler Abstand zwischen Spawns
-    public float difficultyIncreaseRate = 0.05f; // Wie schnell das Intervall sinkt
+    public float difficultyIncreaseRate = 0.05f; // Wie schnell das Intervall sinkt (seconds -> smaller interval)
+
+    // New: movement scaling settings (percent-based, multiplicative)
+    [Tooltip("Spawn interval threshold at which bug movement speed starts increasing")]
+    public float spawnSpeedTrigger = 1.5f;
+
+    [Tooltip("Percent increase per second (0.02 = 2% per second) applied multiplicatively to movement speed once trigger reached")]
+    public float movementPercentPerSecond = 0.02f;
+
+    [Tooltip("Maximum movement multiplier (1 = base speed, 2 = double)")]
+    public float maxMovementMultiplier = 2f;
 
     // New: speed and distance ramp settings
-    public float speedIncreaseRate = 0.05f; // multiplier increase per second (1.0 + time * rate)
-    public float maxDifficultyMultiplier = 3f; // cap for multiplier
     public float initialSpawnDistance = 5f; // base distance to player
     public float distanceDecreaseRate = 0.02f; // how much spawn distance shrinks per second
-    public float minSpawnDistance = 3f; // don't spawn closer than this
+    public float minSpawnDistance = 2f; // don't spawn closer than this
 
-    // Global difficulty multiplier readable by BugAI (updated each frame)
-    public static float difficultyMultiplier = 1f;
+    // movementMultiplier is read by BugAI each frame
+    public static float movementMultiplier = 1f;
 
     private float currentSpawnInterval;
     private float timeSinceLastSpawn;
@@ -32,7 +40,7 @@ public class BugSpawner : MonoBehaviour
         timeSinceLastSpawn = 0f;
         timeSurvived = 0f;
         bugsKilled = 0;
-        difficultyMultiplier = 1f;
+        movementMultiplier = 1f;
     }
 
     void Update()
@@ -40,14 +48,19 @@ public class BugSpawner : MonoBehaviour
         timeSurvived += Time.deltaTime;
         timeSinceLastSpawn += Time.deltaTime;
 
-        // Intervall verringern, je länger der Spieler überlebt
+        // Intervall verringern, je länger der Spieler überlebt (spawn frequency ramps first)
         currentSpawnInterval = Mathf.Max(
             startSpawnInterval - timeSurvived * difficultyIncreaseRate,
             minSpawnInterval
         );
 
-        // Update global difficulty multiplier for BugAI speed scaling
-        difficultyMultiplier = Mathf.Min(1f + timeSurvived * speedIncreaseRate, maxDifficultyMultiplier);
+        // Only start increasing movement speed once spawn interval reached the configured threshold.
+        if (currentSpawnInterval <= spawnSpeedTrigger)
+        {
+            // multiplicative percent-per-second increase, slowed by small default rate
+            float percentThisFrame = movementPercentPerSecond * Time.deltaTime;
+            movementMultiplier = Mathf.Min(movementMultiplier * (1f + percentThisFrame), maxMovementMultiplier);
+        }
 
         if (timeSinceLastSpawn >= currentSpawnInterval)
         {

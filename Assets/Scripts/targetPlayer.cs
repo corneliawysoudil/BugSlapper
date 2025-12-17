@@ -8,10 +8,10 @@ public class BugAI : MonoBehaviour
     public float circleSpeed = 2f;
     public float attackDistance = 1.5f;
     public float attackSpeed = 8f;
-    public float circleDuration = 2f; // Wie lange soll gekreist werden (in Sekunden)
+    public float circleDuration = 4f; // Wie lange soll gekreist werden (in Sekunden)
     public float minCircleFraction = 0.3f; // Mindestens ein Teilkreis (0.0 - 1.0)
 
-    private float circleTimer = 0f;
+    private float circleTimer = 4f;
     private bool isAttacking = false;
     private Vector3 circleOffset;
     private float circleAngle;
@@ -51,9 +51,9 @@ public class BugAI : MonoBehaviour
                 return; // Kein Ziel gefunden, Rest überspringen
         }
 
-        // Get current speeds scaled by global difficulty multiplier (from BugSpawner)
-        float currentFlySpeed = baseFlySpeed * BugSpawner.difficultyMultiplier;
-        float currentAttackSpeed = baseAttackSpeed * BugSpawner.difficultyMultiplier;
+        // Get current speeds scaled by BugSpawner.movementMultiplier (multiplicative percent-based progression)
+        float currentFlySpeed = baseFlySpeed * BugSpawner.movementMultiplier;
+        float currentAttackSpeed = baseAttackSpeed * BugSpawner.movementMultiplier;
 
         if (!isAttacking)
         {

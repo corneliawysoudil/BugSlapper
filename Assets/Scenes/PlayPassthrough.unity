@@ -309,14 +309,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1632690553892074456, guid: c356c1b83a4332f40a8468a56da6b936, type: 3}
       propertyPath: _trackingOriginType
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1632690553892074456, guid: c356c1b83a4332f40a8468a56da6b936, type: 3}
-      propertyPath: _enableDynamicResolution
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1632690553892074456, guid: c356c1b83a4332f40a8468a56da6b936, type: 3}
+      propertyPath: _enableDynamicResolution
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1632690553892074456, guid: c356c1b83a4332f40a8468a56da6b936, type: 3}
       propertyPath: isInsightPassthroughEnabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1632690553892074456, guid: c356c1b83a4332f40a8468a56da6b936, type: 3}
+      propertyPath: requestScenePermissionOnStartup
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1632690553892074456, guid: c356c1b83a4332f40a8468a56da6b936, type: 3}
@@ -411,6 +415,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1632690553884968504, guid: c356c1b83a4332f40a8468a56da6b936, type: 3}
       insertIndex: -1
       addedObject: {fileID: 175501552}
+    - targetCorrespondingSourceObject: {fileID: 5144658995942963937, guid: c356c1b83a4332f40a8468a56da6b936, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 665734786}
   m_SourcePrefab: {fileID: 100100000, guid: c356c1b83a4332f40a8468a56da6b936, type: 3}
 --- !u!1 &175501546 stripped
 GameObject:
@@ -654,8 +661,8 @@ MonoBehaviour:
   - {fileID: 2088312491}
   fullHeartSprite: {fileID: 388768998, guid: 6c9a633936be66d47b576ce4489ded20, type: 3}
   emptyHeartSprite: {fileID: -1410693463, guid: 0fb873c4c968c7b46a84e97117d57d5e, type: 3}
-  hitSound: {fileID: 0}
-  audioSource: {fileID: 0}
+  hitSound: {fileID: 8300000, guid: dae6b21999442e54f97b2b11b7079ed7, type: 3}
+  audioSource: {fileID: 175501561}
 --- !u!135 &175501556
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -811,8 +818,9 @@ MonoBehaviour:
   startSpawnInterval: 5
   minSpawnInterval: 3
   difficultyIncreaseRate: 0.05
-  speedIncreaseRate: 0.05
-  maxDifficultyMultiplier: 3
+  spawnSpeedTrigger: 1.5
+  movementPercentPerSecond: 0.02
+  maxMovementMultiplier: 2
   initialSpawnDistance: 5
   distanceDecreaseRate: 0.02
   minSpawnDistance: 3
@@ -1049,6 +1057,30 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 649952085}
   m_CullTransparentMesh: 1
+--- !u!1 &665734779 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5144658995942963937, guid: c356c1b83a4332f40a8468a56da6b936, type: 3}
+  m_PrefabInstance: {fileID: 175501545}
+  m_PrefabAsset: {fileID: 0}
+--- !u!54 &665734784 stripped
+Rigidbody:
+  m_CorrespondingSourceObject: {fileID: 5144658995942963938, guid: c356c1b83a4332f40a8468a56da6b936, type: 3}
+  m_PrefabInstance: {fileID: 175501545}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &665734786
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 665734779}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f3bdef10dfe17b4a923841b8c887a95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  headTransform: {fileID: 175501548}
+  playerRigidbody: {fileID: 665734784}
 --- !u!1 &1036922967
 GameObject:
   m_ObjectHideFlags: 0
