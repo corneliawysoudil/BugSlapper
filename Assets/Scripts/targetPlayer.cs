@@ -16,6 +16,10 @@ public class BugAI : MonoBehaviour
     private Vector3 circleOffset;
     private float circleAngle;
 
+    // Store base speeds so we can scale them by the global multiplier without compounding
+    private float baseFlySpeed;
+    private float baseAttackSpeed;
+
     void Start()
     {
         if (target == null)
@@ -30,6 +34,10 @@ public class BugAI : MonoBehaviour
         circleSpeed *= Random.value > 0.5f ? 1 : -1;
         // Zufällige Kreisdauer (voller Kreis oder Teilkreis)
         circleDuration *= Random.Range(minCircleFraction, 1f);
+
+        // initialize base speeds
+        baseFlySpeed = flySpeed;
+        baseAttackSpeed = attackSpeed;
     }
 
     void Update()
@@ -43,6 +51,10 @@ public class BugAI : MonoBehaviour
                 return; // Kein Ziel gefunden, Rest überspringen
         }
 
+        // Get current speeds scaled by global difficulty multiplier (from BugSpawner)
+        float currentFlySpeed = baseFlySpeed * BugSpawner.difficultyMultiplier;
+        float currentAttackSpeed = baseAttackSpeed * BugSpawner.difficultyMultiplier;
+
         if (!isAttacking)
         {
             // Kreisbewegung um das Ziel
@@ -53,7 +65,7 @@ public class BugAI : MonoBehaviour
             Vector3 desiredPosition = target.position + circleOffset;
 
             // Bewege dich zur aktuellen Kreisposition
-            transform.position = Vector3.MoveTowards(transform.position, desiredPosition, flySpeed * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, desiredPosition, currentFlySpeed * Time.deltaTime);
 
             // Nach Ablauf der Kreiszeit oder wenn nah genug, Angriff starten
             if (circleTimer >= circleDuration || Vector3.Distance(transform.position, target.position) < attackDistance * 2)
@@ -64,7 +76,7 @@ public class BugAI : MonoBehaviour
         else
         {
             // Direkter Angriff auf das Ziel
-            transform.position = Vector3.MoveTowards(transform.position, target.position, attackSpeed * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, target.position, currentAttackSpeed * Time.deltaTime);
 
             // Optional: Nach dem Angriff zurücksetzen oder zerstören
             if (Vector3.Distance(transform.position, target.position) < attackDistance)

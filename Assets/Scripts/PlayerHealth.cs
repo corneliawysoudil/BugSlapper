@@ -8,21 +8,12 @@ public class PlayerHealth : MonoBehaviour
     private int currentLives; // Aktuelle Anzahl an Leben
 
     public Image[] heartImages; // Array der Herz-Sprites (UI-Images)
-    public Sprite fullHeartSprite; // Sprite für ein volles Herz
-    public Sprite emptyHeartSprite; // Sprite für ein leeres Herz
+    public Sprite fullHeartSprite; // Sprite fr ein volles Herz
+    public Sprite emptyHeartSprite; // Sprite fr ein leeres Herz
 
-    public AudioClip hitSound; // AudioClip für den Treffer-Sound
+    public AudioClip hitSound; // AudioClip fr den Treffer-Sound
     public AudioSource audioSource; // AudioSource zum Abspielen des Sounds
 
-
-    void Start()
-    {
-        // Initialisiere die Lebenspunkte
-        currentLives = maxLives;
-
-        // Setze alle Herzen auf "voll"
-        UpdateHeartUI();
-    }
 
     private void Awake()
     {
@@ -32,20 +23,44 @@ public class PlayerHealth : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        // Überprüfe, ob das kollidierende Objekt den Tag "Bug" hat
+        //berprfe, ob das kollidierende Objekt den Tag "Bug" hat
 
         if (other.CompareTag("Bug"))
         {
+            // Mark bug as killed by player hit to prevent death handlers from incrementing score
+            BugDeathHandler bugHandler = other.GetComponent<BugDeathHandler>();
+            if (bugHandler != null)
+            {
+                bugHandler.MarkAsKilledByPlayerHit();
+            }
+            
+            WaveBugDeathHandler waveHandler = other.GetComponent<WaveBugDeathHandler>();
+            if (waveHandler != null)
+            {
+                waveHandler.MarkAsKilledByPlayerHit();
+            }
+
             ReduceLife();
             PlayHitSound(); // Spiele den Treffer-Sound ab
-            Destroy(other.gameObject); // Zerstöre das kollidierende Objekt
-            ScoreKeeper.score--;
+            
+            // Decrement score when bug hits player (prevent negative scores)
+            /*
+            if (ScoreKeeper.score > 0)
+            {
+                ScoreKeeper.score--;
+            }
+            */
+            
+            Destroy(other.gameObject); // Zerstre das kollidierende Objekt
         }
     }
 
     void PlayHitSound()
     {
-        audioSource.PlayOneShot(hitSound); // Spiele den Treffer-Sound ab
+        if (audioSource != null && hitSound != null)
+        {
+            audioSource.PlayOneShot(hitSound); // Spiele den Treffer-Sound ab
+        }
     }
     
 
@@ -59,7 +74,7 @@ public class PlayerHealth : MonoBehaviour
             Debug.Log($"Player lives: {currentLives}");
         }
 
-        // Überprüfe, ob der Spieler keine Leben mehr hat
+        //berprfe, ob der Spieler keine Leben mehr hat
         if (currentLives <= 0)
         {
             Debug.Log("Game Over!");

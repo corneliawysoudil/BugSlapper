@@ -388,6 +388,9 @@ PrefabInstance:
       addedObject: {fileID: 581559089}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 1632690553884968508, guid: c356c1b83a4332f40a8468a56da6b936, type: 3}
+      insertIndex: 1
+      addedObject: {fileID: 1533290797}
+    - targetCorrespondingSourceObject: {fileID: 1632690553884968508, guid: c356c1b83a4332f40a8468a56da6b936, type: 3}
       insertIndex: -1
       addedObject: {fileID: 175501547}
     - targetCorrespondingSourceObject: {fileID: 1632690553884968510, guid: c356c1b83a4332f40a8468a56da6b936, type: 3}
@@ -808,7 +811,11 @@ MonoBehaviour:
   startSpawnInterval: 5
   minSpawnInterval: 3
   difficultyIncreaseRate: 0.05
-  spawnDistance: 5
+  speedIncreaseRate: 0.05
+  maxDifficultyMultiplier: 3
+  initialSpawnDistance: 5
+  distanceDecreaseRate: 0.02
+  minSpawnDistance: 3
   headObject: {fileID: 175501551}
   bugsKilled: 0
 --- !u!4 &348205835
@@ -1072,6 +1079,81 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 348205835}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1061852610
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1061852613}
+  - component: {fileID: 1061852612}
+  - component: {fileID: 1061852611}
+  m_Layer: 0
+  m_Name: '[BuildingBlock] Spatial Anchor Core'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1061852611
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1061852610}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af86c86a626dba44ba7d1d4ebd5bdad9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _onAnchorCreateCompleted:
+    m_PersistentCalls:
+      m_Calls: []
+  _onAnchorsLoadCompleted:
+    m_PersistentCalls:
+      m_Calls: []
+  _onAnchorsEraseAllCompleted:
+    m_PersistentCalls:
+      m_Calls: []
+  _onAnchorEraseCompleted:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &1061852612
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1061852610}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b023183069df224080314a560e6e1ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blockId: a383f5ea-3856-4c23-a11c-7fdbb9408035
+  instanceId: ed722c24-323b-411e-8a93-1e7dfd977359
+  version: 1
+  installationRoutineCheckpoint:
+    _installationRoutineId: 
+    _installationVariants: []
+--- !u!4 &1061852613
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1061852610}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1115698962
 GameObject:
@@ -1431,6 +1513,24 @@ Transform:
   m_Children: []
   m_Father: {fileID: 348205835}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1533290797
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 175501546}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b023183069df224080314a560e6e1ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blockId: e47682b9-c270-40b1-b16d-90b627a5ce1b
+  instanceId: ba8b3332-c66a-4530-b733-a4e1964a5208
+  version: 1
+  installationRoutineCheckpoint:
+    _installationRoutineId: 
+    _installationVariants: []
 --- !u!1 &1596919950
 GameObject:
   m_ObjectHideFlags: 0
@@ -1885,3 +1985,4 @@ SceneRoots:
   - {fileID: 109687840}
   - {fileID: 1115698963}
   - {fileID: 2111063238}
+  - {fileID: 1061852613}

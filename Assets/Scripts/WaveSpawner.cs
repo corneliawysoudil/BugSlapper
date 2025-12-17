@@ -20,6 +20,7 @@ public class WaveSpawner : MonoBehaviour
 
     private int currentWave = 0;
     private bool spawning = false;
+    public int bugsKilled = 0; // Zähler für getötete Bugs
 
     void Start()
     {
@@ -28,8 +29,11 @@ public class WaveSpawner : MonoBehaviour
 
     void Update()
     {
-        spawnCenter = headObject.transform.position;
-        transform.position = new Vector3(spawnCenter.x, 0, spawnCenter.z);
+        if (headObject != null)
+        {
+            spawnCenter = headObject.transform.position;
+            transform.position = new Vector3(spawnCenter.x, 0, spawnCenter.z);
+        }
     }
 
     IEnumerator SpawnWave()
@@ -48,7 +52,7 @@ public class WaveSpawner : MonoBehaviour
             spawning = false;
             currentWave++;
 
-            // Warte, bis alle Bugs besiegt sind, bevor die n�chste Welle startet
+            // Warte, bis alle Bugs besiegt sind, bevor die n�chste Welle startet
             while (GameObject.FindGameObjectsWithTag("Bug").Length > 0)
             {
                 yield return null;
@@ -60,6 +64,12 @@ public class WaveSpawner : MonoBehaviour
 
     void SpawnBug()
     {
+        if (bugPrefabs == null || bugPrefabs.Count == 0)
+            return;
+        
+        if (spawnPoints == null || spawnPoints.Length == 0)
+            return;
+
         int spawnIndex = Random.Range(0, spawnPoints.Length);
         int prefabIndex = Random.Range(0, bugPrefabs.Count);
         GameObject bug = Instantiate(
@@ -68,5 +78,39 @@ public class WaveSpawner : MonoBehaviour
             Quaternion.identity
         );
         bug.tag = "Bug";
+
+        // WaveBugDeathHandler-Komponente hinzufügen und Spawner referenzieren
+        WaveBugDeathHandler handler = bug.AddComponent<WaveBugDeathHandler>();
+        handler.spawner = this;
+    }
+
+    // Diese Methode kann von WaveBugDeathHandler aufgerufen werden
+    public void OnBugKilled()
+    {
+        bugsKilled++;
+        ScoreKeeper.score++; // Increment score instead of overwriting
+    }
+}
+
+// Hilfsskript für Bugs spawned by WaveSpawner
+public class WaveBugDeathHandler : MonoBehaviour
+{
+    [HideInInspector]
+    public WaveSpawner spawner;
+    private bool wasKilledByPlayerHit = false; // Flag to prevent score increment when bug hits player
+
+    // Call this method when bug hits player (prevents score increment)
+    public void MarkAsKilledByPlayerHit()
+    {
+        wasKilledByPlayerHit = true;
+    }
+
+    private void OnDestroy()
+    {
+        // Only increment score if bug was killed by swatter, not if it hit the player
+        if (spawner != null && !wasKilledByPlayerHit)
+        {
+            spawner.OnBugKilled();
+        }
     }
 }
